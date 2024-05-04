@@ -1,6 +1,10 @@
+import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function AddUser() {
+    let navigate=useNavigate()
 
     const[user,setUser]=useState({
         name:"",
@@ -13,6 +17,12 @@ export default function AddUser() {
 
     const onInputChange=(e)=>{
         setUser({...user,[e.target.name]:e.target.value})
+    } 
+
+    const onSubmit= async (e)=>{
+        e.preventDefault();
+        await axios.post("http://localhost:8080/user",user)
+        navigate("/")
     }
 
   return (
@@ -20,6 +30,7 @@ export default function AddUser() {
         <div className='row'>
             <div className='col-md-6 offset-md-3 border rounded mt-2 p-4 shadow'>
                 <h2 className='text-center m-4 '>Rejister User</h2>
+                <form onSubmit={(e)=>onSubmit(e)}>
                 <div className='md-3'>
                     <label htmlFor='Name' className='form-lable mt-2'>Name</label>
                     <input type={"text"} name='name'
@@ -58,7 +69,8 @@ export default function AddUser() {
                     />
                 </div>
                 <button type='submit' className='btn btn-primary mt-4 shadow'>Submit</button>
-                <button type='submit' className='btn btn-danger mt-4 mx-4 shadow'>Cencel</button>
+                <Link to="/" className='btn btn-danger mt-4 mx-4 shadow'>Cencel</Link>
+                </form>
             </div>
         </div>
     </div>
