@@ -4,12 +4,12 @@ export default function AddUser() {
 
     const[user,setUser]=useState({
         name:"",
-        Username:"",
+        username:"",
         email:"",
         PhoneNumber:""
     });
 
-    const {name,Username,email,PhoneNumber}=user
+    const {name,username,email,PhoneNumber}=user
 
     const onInputChange=(e)=>{
         setUser({...user,[e.target.name]:e.target.value})
@@ -30,14 +30,15 @@ export default function AddUser() {
                     />
                 </div>
                 <div className='md-3'>
-                    <label htmlFor='Username' className='form-lable mt-2' >User Name</label>
+                    <label htmlFor='username' className='form-lable mt-2'>User Name</label>
                     <input type={"text"} name='username'
                     className='form-control'
                     placeholder='Enter Your User Name'
-                    value={Username}
+                    value={username}
                     onChange={(e)=>onInputChange(e)}
                     />
                 </div>
+
                 <div className='md-3'>
                     <label htmlFor='email' className='form-lable mt-2'>Email</label>
                     <input type={"text"} name='email'
