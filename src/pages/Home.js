@@ -12,9 +12,13 @@ export default function Home() {
         loadUsers();
     },[]);
     const loadUsers= async ()=>{
+      try {
         const result=await axios.get("http://localhost:8080/users");
         setUsers(result.data);
         console.log(result.data);
+      } catch (error) {
+        console.error("Error loading user:", error);
+      }
     }
 
     const DeleteUser = async (userId) => {
